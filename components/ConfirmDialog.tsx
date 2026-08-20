@@ -25,13 +25,13 @@ export function ConfirmDialog({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-5 shadow-xl">
+      <div className="w-full max-w-md rounded-xl bg-surface p-5 shadow-xl">
         <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="mt-2 text-sm text-neutral-600">{message}</p>
+        <p className="mt-2 text-sm text-muted">{message}</p>
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <button
             type="button"
-            className="min-h-11 rounded-md border border-neutral-300 px-3 py-2 text-sm hover:bg-neutral-50"
+            className="min-h-11 rounded-md border border-border px-3 py-2 text-sm hover:bg-surface-muted"
             onClick={onClose}
             disabled={busy}
           >

@@ -124,7 +124,7 @@ export function DocumentForm({
         <label className="text-sm font-medium">
           Document type
           <select
-            className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+            className="mt-1 w-full rounded-md border border-border bg-surface px-3 py-2"
             value={documentType}
             onChange={(event) => setDocumentType(event.target.value as DocumentType)}
             required
@@ -139,13 +139,13 @@ export function DocumentForm({
       </div>
 
       {document ? (
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-muted">
           Document number{" "}
           <span className="font-medium">{displayDocumentNumber(document.document_number)}</span> is
           assigned automatically and stays with this record.
         </p>
       ) : (
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-muted">
           Numbers are assigned when you save. Extra items print on additional pages.
           Descriptions wrap inside the table and do not overlap the footer.
         </p>
@@ -153,13 +153,13 @@ export function DocumentForm({
 
       <LineItemsEditor items={items} descriptions={descriptions} onChange={setItems} />
 
-      <div className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3">
+      <div className="flex items-center justify-between rounded-lg border border-border-subtle bg-surface px-4 py-3">
         <span className="text-sm font-medium">Grand total</span>
         <span className="text-lg font-semibold">{formatMoney(grandTotal)}</span>
       </div>
 
       {error ? (
-        <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
+        <p className="rounded-md border border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/50 px-3 py-2 text-sm text-red-800 dark:text-red-300">
           {error}
         </p>
       ) : null}
@@ -174,7 +174,7 @@ export function DocumentForm({
         </button>
         <button
           type="button"
-          className="min-h-11 w-full rounded-md border border-neutral-300 px-4 py-2 text-sm hover:bg-neutral-50 sm:w-auto"
+          className="min-h-11 w-full rounded-md border border-border px-4 py-2 text-sm hover:bg-surface-muted sm:w-auto"
           onClick={() => router.back()}
           disabled={busy}
         >

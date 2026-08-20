@@ -1,5 +1,15 @@
--- Allow document number generation through RPC without exposing counter writes to the client.
+-- Start document numbers at 2000 (next issued = 2000 when counter is 1999).
+-- Only raises counters that have not already passed 1999.
 
+update public.document_counters
+set last_number = 1999
+where last_number < 1999;
+
+insert into public.document_counters (prefix, last_number)
+values ('DC', 1999), ('QTN', 1999)
+on conflict (prefix) do nothing;
+
+-- If a counter row is missing at runtime, the first number issued should be 2000.
 create or replace function public.next_document_number(p_prefix text)
 returns text
 language plpgsql

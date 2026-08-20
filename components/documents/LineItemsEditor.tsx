@@ -64,7 +64,7 @@ export function LineItemsEditor({
         <h2 className="text-sm font-semibold">Line items</h2>
         <button
           type="button"
-          className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm hover:bg-neutral-50"
+          className="min-h-10 rounded-md border border-border px-3 py-2 text-sm hover:bg-surface-muted"
           onClick={() =>
             onChange([
               ...items,
@@ -85,12 +85,12 @@ export function LineItemsEditor({
       {isMobile ? (
         <div className="space-y-3">
           {items.map((item, index) => (
-            <div key={item.key} className="rounded-lg border border-neutral-200 bg-white p-3">
+            <div key={item.key} className="rounded-lg border border-border-subtle bg-surface p-3">
               <div className="mb-2 flex items-center justify-between">
-                <span className="text-sm font-medium text-neutral-500">Item {index + 1}</span>
+                <span className="text-sm font-medium text-muted">Item {index + 1}</span>
                 <button
                   type="button"
-                  className="min-h-10 text-sm text-red-700 disabled:text-neutral-400"
+                  className="min-h-10 text-sm text-red-700 dark:text-red-400 disabled:text-muted"
                   disabled={items.length === 1}
                   onClick={() => onChange(items.filter((_, i) => i !== index))}
                 >
@@ -117,7 +117,7 @@ export function LineItemsEditor({
                     min="0"
                     step="0.01"
                     inputMode="decimal"
-                    className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2"
+                    className="mt-1 w-full rounded-md border border-border px-3 py-2"
                     value={item.quantity}
                     onChange={(event) =>
                       update(index, { quantity: parseNumber(event.target.value) })
@@ -132,7 +132,7 @@ export function LineItemsEditor({
                     min="0"
                     step="0.01"
                     inputMode="decimal"
-                    className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2"
+                    className="mt-1 w-full rounded-md border border-border px-3 py-2"
                     value={item.unit_price}
                     onChange={(event) =>
                       update(index, { unit_price: parseNumber(event.target.value) })
@@ -147,7 +147,7 @@ export function LineItemsEditor({
                   type="number"
                   step="0.01"
                   inputMode="decimal"
-                  className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2"
+                  className="mt-1 w-full rounded-md border border-border px-3 py-2"
                   value={item.total}
                   onChange={(event) => update(index, { total: parseNumber(event.target.value) })}
                   required
@@ -157,7 +157,7 @@ export function LineItemsEditor({
           ))}
         </div>
       ) : (
-        <div className="rounded-lg border border-neutral-200 bg-white">
+        <div className="rounded-lg border border-border-subtle bg-surface">
           <table className="min-w-full text-sm">
             <thead className="bg-neutral-900 text-white">
               <tr>
@@ -171,8 +171,8 @@ export function LineItemsEditor({
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={item.key} className="border-t border-neutral-200 align-top">
-                  <td className="px-2 py-2 text-neutral-500">{index + 1}</td>
+                <tr key={item.key} className="border-t border-border-subtle align-top">
+                  <td className="px-2 py-2 text-muted">{index + 1}</td>
                   <td className="relative z-10 px-2 py-2 min-w-64">
                     <NameCombobox
                       value={item.description}
@@ -182,7 +182,7 @@ export function LineItemsEditor({
                       required
                       placeholder="Type to search or create"
                       emptyLabel="Start typing a description."
-                      className="w-full rounded-md border border-neutral-300 px-2 py-1"
+                      className="w-full rounded-md border border-border px-2 py-1"
                     />
                   </td>
                   <td className="px-2 py-2">
@@ -190,7 +190,7 @@ export function LineItemsEditor({
                       type="number"
                       min="0"
                       step="0.01"
-                      className="w-24 rounded-md border border-neutral-300 px-2 py-1"
+                      className="w-24 rounded-md border border-border px-2 py-1"
                       value={item.quantity}
                       onChange={(event) =>
                         update(index, { quantity: parseNumber(event.target.value) })
@@ -203,7 +203,7 @@ export function LineItemsEditor({
                       type="number"
                       min="0"
                       step="0.01"
-                      className="w-28 rounded-md border border-neutral-300 px-2 py-1"
+                      className="w-28 rounded-md border border-border px-2 py-1"
                       value={item.unit_price}
                       onChange={(event) =>
                         update(index, { unit_price: parseNumber(event.target.value) })
@@ -215,7 +215,7 @@ export function LineItemsEditor({
                     <input
                       type="number"
                       step="0.01"
-                      className="w-28 rounded-md border border-neutral-300 px-2 py-1"
+                      className="w-28 rounded-md border border-border px-2 py-1"
                       value={item.total}
                       onChange={(event) =>
                         update(index, { total: parseNumber(event.target.value) })
@@ -226,7 +226,7 @@ export function LineItemsEditor({
                   <td className="px-2 py-2">
                     <button
                       type="button"
-                      className="text-sm text-red-700 hover:underline disabled:text-neutral-400"
+                      className="text-sm text-red-700 dark:text-red-400 hover:underline disabled:text-muted"
                       disabled={items.length === 1}
                       onClick={() => onChange(items.filter((_, i) => i !== index))}
                     >

@@ -25,25 +25,25 @@ export function PrintDateModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-5 shadow-xl">
+      <div className="w-full max-w-md rounded-xl bg-surface p-5 shadow-xl">
         <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="mt-2 text-sm text-neutral-600">
+        <p className="mt-2 text-sm text-muted">
           Choose the date that should appear on the printed document.
         </p>
         <label className="mt-4 block text-sm font-medium">
           Print / download date
           <input
             type="date"
-            className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-border px-3 py-2"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
         </label>
-        {error ? <p className="mt-3 text-sm text-red-700">{error}</p> : null}
+        {error ? <p className="mt-3 text-sm text-red-700 dark:text-red-400">{error}</p> : null}
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <button
             type="button"
-            className="min-h-11 rounded-md border border-neutral-300 px-3 py-2 text-sm hover:bg-neutral-50"
+            className="min-h-11 rounded-md border border-border px-3 py-2 text-sm hover:bg-surface-muted"
             onClick={onClose}
             disabled={busy}
           >

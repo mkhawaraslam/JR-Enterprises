@@ -71,11 +71,11 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
 
   return (
     <div className="space-y-4">
-      <form onSubmit={onAdd} className="flex flex-col gap-3 rounded-lg border border-neutral-200 bg-white p-4 sm:flex-row sm:items-end">
+      <form onSubmit={onAdd} className="flex flex-col gap-3 rounded-lg border border-border-subtle bg-surface p-4 sm:flex-row sm:items-end">
         <label className="block flex-1 text-sm font-medium">
           New description
           <input
-            className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-border px-3 py-2"
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder="e.g. Pneumatic cylinder"
@@ -92,17 +92,17 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
       </form>
 
       <input
-        className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm"
+        className="w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm"
         placeholder="Search descriptions"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
 
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="text-sm text-red-700 dark:text-red-400">{error}</p> : null}
 
-      <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+      <div className="overflow-hidden rounded-lg border border-border-subtle bg-surface">
         {filtered.length === 0 ? (
-          <p className="px-4 py-8 text-center text-neutral-500">
+          <p className="px-4 py-8 text-center text-muted">
             {descriptions.length === 0
               ? "No descriptions yet. Add one here or create it from a document."
               : "No descriptions match this search."}
@@ -112,11 +112,11 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
             {filtered.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-col gap-3 border-t border-neutral-200 px-4 py-3 first:border-t-0 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-3 border-t border-border-subtle px-4 py-3 first:border-t-0 sm:flex-row sm:items-center sm:justify-between"
               >
                 {editingId === item.id ? (
                   <input
-                    className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm sm:max-w-md"
+                    className="w-full rounded-md border border-border px-3 py-2 text-sm sm:max-w-md"
                     value={editingName}
                     onChange={(event) => setEditingName(event.target.value)}
                     onKeyDown={(event) => {
@@ -136,7 +136,7 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
                     <>
                       <button
                         type="button"
-                        className="min-h-10 text-[#9b1c1c] hover:underline disabled:opacity-60"
+                        className="min-h-10 text-[#9b1c1c] dark:text-[#f87171] hover:underline disabled:opacity-60"
                         disabled={busy}
                         onClick={() => onSaveEdit(item.id)}
                       >
@@ -144,7 +144,7 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
                       </button>
                       <button
                         type="button"
-                        className="min-h-10 text-neutral-600 hover:underline"
+                        className="min-h-10 text-muted hover:underline"
                         disabled={busy}
                         onClick={() => setEditingId(null)}
                       >
@@ -155,7 +155,7 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
                     <>
                       <button
                         type="button"
-                        className="min-h-10 text-[#9b1c1c] hover:underline"
+                        className="min-h-10 text-[#9b1c1c] dark:text-[#f87171] hover:underline"
                         onClick={() => {
                           setEditingId(item.id);
                           setEditingName(item.name);
@@ -166,7 +166,7 @@ export function DescriptionManager({ descriptions }: { descriptions: Description
                       </button>
                       <button
                         type="button"
-                        className="min-h-10 text-red-700 hover:underline"
+                        className="min-h-10 text-red-700 dark:text-red-400 hover:underline"
                         onClick={() => setDeleteId(item.id)}
                       >
                         Delete

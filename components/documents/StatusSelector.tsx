@@ -29,7 +29,7 @@ export function StatusSelector({
       <label className="block text-sm font-medium">
         Status / type
         <select
-          className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2"
+          className="mt-1 w-full rounded-md border border-border bg-surface px-3 py-2"
           value={value}
           onChange={(event) => setPendingType(event.target.value as DocumentType)}
         >
@@ -40,7 +40,7 @@ export function StatusSelector({
           ))}
         </select>
       </label>
-      {error ? <p className="mt-2 text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="mt-2 text-sm text-red-700 dark:text-red-400">{error}</p> : null}
       <ConfirmDialog
         open={pendingType !== null && pendingType !== value}
         title="Change document status?"

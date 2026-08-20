@@ -14,9 +14,9 @@ export default async function DescriptionsPage() {
     descriptions = await listDescriptions();
   } catch (error) {
     return (
-      <section className="rounded-xl border border-red-200 bg-red-50 p-6">
+      <section className="rounded-xl border border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/50 p-6">
         <h1 className="text-xl font-semibold">Could not load descriptions</h1>
-        <p className="mt-2 text-sm text-red-800">
+        <p className="mt-2 text-sm text-red-800 dark:text-red-300">
           {error instanceof Error ? error.message : "Database error."} Run{" "}
           <code>supabase/migrations/004_create_descriptions.sql</code> in the Supabase SQL editor.
         </p>
@@ -28,7 +28,7 @@ export default async function DescriptionsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl font-semibold sm:text-2xl">Descriptions</h1>
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-muted">
           These names appear in the line-item dropdown. Documents store the text only.
         </p>
       </div>

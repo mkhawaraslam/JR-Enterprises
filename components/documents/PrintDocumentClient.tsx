@@ -28,14 +28,14 @@ export function PrintDocumentClient({
           <h1 className="text-xl font-semibold sm:text-2xl">
             Print {displayDocumentNumber(document.document_number)}
           </h1>
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-muted">
             Preview the A4 PDF, then print or download. Date shown: {date || "not selected"}.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:flex">
           <button
             type="button"
-            className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-10 rounded-md border border-border px-3 py-2 text-sm"
             onClick={() => setDate("")}
           >
             Change date
@@ -53,7 +53,7 @@ export function PrintDocumentClient({
           </button>
           <button
             type="button"
-            className="col-span-2 min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm disabled:opacity-50 sm:col-span-1"
+            className="col-span-2 min-h-10 rounded-md border border-border px-3 py-2 text-sm disabled:opacity-50 sm:col-span-1"
             disabled={!downloadSrc || busy}
             onClick={async () => {
               if (!downloadSrc) return;
@@ -73,17 +73,17 @@ export function PrintDocumentClient({
         </div>
       </div>
 
-      {loadError ? <p className="text-sm text-red-700">{loadError}</p> : null}
+      {loadError ? <p className="text-sm text-red-700 dark:text-red-400">{loadError}</p> : null}
 
       {src ? (
         <iframe
           title="Document PDF preview"
-          className="h-[70vh] w-full rounded-lg border border-neutral-300 bg-white sm:h-[80vh]"
+          className="h-[70vh] w-full rounded-lg border border-border bg-surface sm:h-[80vh]"
           src={src}
           onError={() => setLoadError("Could not load the PDF preview.")}
         />
       ) : (
-        <div className="rounded-lg border border-dashed border-neutral-300 p-10 text-center text-neutral-500">
+        <div className="rounded-lg border border-dashed border-border p-10 text-center text-muted">
           Select a print date to generate the preview.
         </div>
       )}

@@ -21,6 +21,8 @@ Also run `supabase/migrations/003_create_customers.sql` so customer names can be
 
 Also run `supabase/migrations/004_create_descriptions.sql` so line-item descriptions can be reused from the dropdown. Existing document item text is copied into the list; documents keep that text and are not linked to the catalog.
 
+Also run `supabase/migrations/005_document_counter_start_2000.sql` so new document numbers start at **2000**.
+
 Regenerate layout previews after changing coordinates:
 
 ```bash

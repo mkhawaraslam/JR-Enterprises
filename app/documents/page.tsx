@@ -15,7 +15,7 @@ export default async function DocumentsPage() {
     documents = await listDocuments();
   } catch (error) {
     return (
-      <p className="text-red-700">
+      <p className="text-red-700 dark:text-red-400">
         {error instanceof Error ? error.message : "Could not load documents."}
       </p>
     );

@@ -53,13 +53,13 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
         <input
-          className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm"
+          className="w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm"
           placeholder="Search number or customer"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
         />
         <select
-          className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2.5 text-sm sm:w-48"
+          className="w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm sm:w-48"
           value={type}
           onChange={(event) => setType(event.target.value as DocumentType | "all")}
         >
@@ -69,38 +69,38 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
           <option value="challan">Challan</option>
         </select>
       </div>
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="text-sm text-red-700 dark:text-red-400">{error}</p> : null}
 
       <div className="space-y-3 md:hidden">
         {filtered.length === 0 ? (
-          <p className="rounded-lg border border-neutral-200 bg-white px-4 py-8 text-center text-neutral-500">
+          <p className="rounded-lg border border-border-subtle bg-surface px-4 py-8 text-center text-muted">
             No documents match these filters.
           </p>
         ) : (
           filtered.map((doc) => (
             <article
               key={doc.id}
-              className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm"
+              className="rounded-lg border border-border-subtle bg-surface p-4 shadow-sm"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs uppercase tracking-wide text-muted">
                     {TYPE_LABELS[doc.document_type]}
                   </p>
                   <p className="text-lg font-semibold">
                     {displayDocumentNumber(doc.document_number)}
                   </p>
-                  <p className="mt-1 truncate text-sm text-neutral-700">{doc.customer_name}</p>
+                  <p className="mt-1 truncate text-sm text-muted-strong">{doc.customer_name}</p>
                 </div>
                 <p className="shrink-0 text-sm font-medium">
                   {formatMoney(sumLineTotals(doc.items))}
                 </p>
               </div>
-              <p className="mt-2 text-xs text-neutral-500">
+              <p className="mt-2 text-xs text-muted">
                 {formatDate(doc.created_at)} · {doc.items.length} item
                 {doc.items.length === 1 ? "" : "s"}
               </p>
-              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm text-[#9b1c1c]">
+              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm text-[#9b1c1c] dark:text-[#f87171]">
                 <Link className="min-h-10 py-1.5" href={`/documents/${doc.id}`}>
                   View
                 </Link>
@@ -137,7 +137,7 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
                 </button>
                 <button
                   type="button"
-                  className="min-h-10 py-1.5 text-red-700"
+                  className="min-h-10 py-1.5 text-red-700 dark:text-red-400"
                   onClick={() => setDeleteId(doc.id)}
                 >
                   Delete
@@ -148,9 +148,9 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
         )}
       </div>
 
-      <div className="hidden overflow-x-auto rounded-lg border border-neutral-200 bg-white md:block">
+      <div className="hidden overflow-x-auto rounded-lg border border-border-subtle bg-surface md:block">
         <table className="min-w-full text-sm">
-          <thead className="bg-neutral-100 text-left">
+          <thead className="bg-surface-muted text-left">
             <tr>
               <th className="px-3 py-2 font-medium">Document number</th>
               <th className="px-3 py-2 font-medium">Type</th>
@@ -165,13 +165,13 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-3 py-8 text-center text-neutral-500">
+                <td colSpan={8} className="px-3 py-8 text-center text-muted">
                   No documents match these filters.
                 </td>
               </tr>
             ) : (
               filtered.map((doc) => (
-                <tr key={doc.id} className="border-t border-neutral-200">
+                <tr key={doc.id} className="border-t border-border-subtle">
                   <td className="px-3 py-2 font-medium">
                     {displayDocumentNumber(doc.document_number)}
                   </td>
@@ -182,7 +182,7 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
                   <td className="px-3 py-2">{formatMoney(sumLineTotals(doc.items))}</td>
                   <td className="px-3 py-2">{formatDate(doc.created_at)}</td>
                   <td className="px-3 py-2">
-                    <div className="flex flex-wrap gap-2 text-[#9b1c1c]">
+                    <div className="flex flex-wrap gap-2 text-[#9b1c1c] dark:text-[#f87171]">
                       <Link className="hover:underline" href={`/documents/${doc.id}`}>
                         View
                       </Link>
@@ -219,7 +219,7 @@ export function DocumentTable({ documents }: { documents: DocumentWithItems[] })
                       </button>
                       <button
                         type="button"
-                        className="text-red-700 hover:underline"
+                        className="text-red-700 dark:text-red-400 hover:underline"
                         onClick={() => setDeleteId(doc.id)}
                       >
                         Delete

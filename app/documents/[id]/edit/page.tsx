@@ -30,7 +30,7 @@ export default async function EditDocumentPage({
         <h1 className="text-xl font-semibold sm:text-2xl">
           Edit {displayDocumentNumber(document.document_number)}
         </h1>
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-muted">
           Line totals stay as entered. Grand total is the sum of those totals.
         </p>
       </div>

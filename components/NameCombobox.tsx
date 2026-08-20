@@ -16,7 +16,7 @@ export function NameCombobox({
   required = false,
   placeholder = "Type to search or create",
   emptyLabel = "Start typing a name.",
-  className = "mt-1 w-full rounded-md border border-neutral-300 px-3 py-2",
+  className = "mt-1 w-full rounded-md border border-border px-3 py-2",
 }: {
   value: string;
   options: NamedOption[];
@@ -123,14 +123,14 @@ export function NameCombobox({
         {rows.length > 0 ? (
           <ul
             role="listbox"
-            className="max-h-56 overflow-auto rounded-md border border-neutral-200 bg-white py-1 shadow-lg"
+            className="max-h-56 overflow-auto rounded-md border border-border-subtle bg-surface py-1 shadow-lg"
           >
             {rows.map((row, index) => (
               <li key={row.key} role="option" aria-selected={index === highlight}>
                 <button
                   type="button"
                   className={`flex w-full px-3 py-2 text-left text-sm ${
-                    index === highlight ? "bg-neutral-100" : "hover:bg-neutral-50"
+                    index === highlight ? "bg-surface-muted" : "hover:bg-surface-muted"
                   }`}
                   onMouseEnter={() => setHighlight(index)}
                   onClick={() => choose(row.value)}
@@ -147,7 +147,7 @@ export function NameCombobox({
             ))}
           </ul>
         ) : (
-          <div className="rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-500 shadow-lg">
+          <div className="rounded-md border border-border-subtle bg-surface px-3 py-2 text-sm text-muted shadow-lg">
             {emptyLabel}
           </div>
         )}

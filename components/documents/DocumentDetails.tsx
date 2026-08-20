@@ -29,18 +29,18 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
         <div className="min-w-0">
-          <p className="text-sm uppercase tracking-wide text-neutral-500">
+          <p className="text-sm uppercase tracking-wide text-muted">
             {TYPE_LABELS[document.document_type]}
           </p>
           <h1 className="text-xl font-semibold sm:text-2xl">
             {displayDocumentNumber(document.document_number)}
           </h1>
-          <p className="mt-1 break-words text-neutral-700">M/s. {document.customer_name}</p>
+          <p className="mt-1 break-words text-muted-strong">M/s. {document.customer_name}</p>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
           <Link
             href={`/documents/${document.id}/edit`}
-            className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-center text-sm hover:bg-neutral-50"
+            className="min-h-10 rounded-md border border-border px-3 py-2 text-center text-sm hover:bg-surface-muted"
           >
             Edit
           </Link>
@@ -53,14 +53,14 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
           </button>
           <button
             type="button"
-            className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm hover:bg-neutral-50"
+            className="min-h-10 rounded-md border border-border px-3 py-2 text-sm hover:bg-surface-muted"
             onClick={() => setPdfMode("download")}
           >
             Download PDF
           </button>
           <button
             type="button"
-            className="min-h-10 rounded-md border border-red-200 px-3 py-2 text-sm text-red-700 hover:bg-red-50"
+            className="min-h-10 rounded-md border border-red-200 dark:border-red-900 px-3 py-2 text-sm text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40"
             onClick={() => setDeleteOpen(true)}
           >
             Delete
@@ -68,28 +68,28 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
         </div>
       </div>
 
-      <div className="w-full max-w-sm rounded-lg border border-neutral-200 bg-white p-4">
+      <div className="w-full max-w-sm rounded-lg border border-border-subtle bg-surface p-4">
         <StatusSelector documentId={document.id} value={document.document_type} />
       </div>
 
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="text-sm text-red-700 dark:text-red-400">{error}</p> : null}
 
       <div className="space-y-3 md:hidden">
         {document.items.map((item) => (
-          <div key={item.id} className="rounded-lg border border-neutral-200 bg-white p-3">
-            <p className="text-xs text-neutral-500">Item {item.serial_number}</p>
+          <div key={item.id} className="rounded-lg border border-border-subtle bg-surface p-3">
+            <p className="text-xs text-muted">Item {item.serial_number}</p>
             <p className="mt-1 whitespace-pre-wrap text-sm">{item.description}</p>
             <dl className="mt-3 grid grid-cols-3 gap-2 text-sm">
               <div>
-                <dt className="text-neutral-500">Qty</dt>
+                <dt className="text-muted">Qty</dt>
                 <dd className="font-medium">{formatMoney(item.quantity)}</dd>
               </div>
               <div>
-                <dt className="text-neutral-500">Price</dt>
+                <dt className="text-muted">Price</dt>
                 <dd className="font-medium">{formatMoney(item.unit_price)}</dd>
               </div>
               <div>
-                <dt className="text-neutral-500">Total</dt>
+                <dt className="text-muted">Total</dt>
                 <dd className="font-medium">{formatMoney(item.total)}</dd>
               </div>
             </dl>
@@ -97,7 +97,7 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
         ))}
       </div>
 
-      <div className="hidden overflow-x-auto rounded-lg border border-neutral-200 bg-white md:block">
+      <div className="hidden overflow-x-auto rounded-lg border border-border-subtle bg-surface md:block">
         <table className="min-w-full text-sm">
           <thead className="bg-neutral-900 text-white">
             <tr>
@@ -110,7 +110,7 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
           </thead>
           <tbody>
             {document.items.map((item) => (
-              <tr key={item.id} className="border-t border-neutral-200">
+              <tr key={item.id} className="border-t border-border-subtle">
                 <td className="px-3 py-2">{item.serial_number}</td>
                 <td className="px-3 py-2 whitespace-pre-wrap">{item.description}</td>
                 <td className="px-3 py-2 text-right">{formatMoney(item.quantity)}</td>
@@ -123,7 +123,7 @@ export function DocumentDetails({ document }: { document: DocumentWithItems }) {
       </div>
 
       <div className="flex justify-stretch sm:justify-end">
-        <div className="flex w-full items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 sm:w-auto sm:gap-6">
+        <div className="flex w-full items-center justify-between rounded-lg border border-border-subtle bg-surface px-4 py-3 sm:w-auto sm:gap-6">
           <span className="mr-6 text-sm font-medium">Grand total</span>
           <span className="text-lg font-semibold">
             {formatMoney(sumLineTotals(document.items))}

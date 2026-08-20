@@ -38,7 +38,7 @@ create table if not exists public.document_counters (
 );
 
 insert into public.document_counters (prefix, last_number)
-values ('DC', 0), ('QTN', 0)
+values ('DC', 1999), ('QTN', 1999)
 on conflict (prefix) do nothing;
 
 create index if not exists documents_type_idx on public.documents (document_type);
@@ -76,7 +76,7 @@ begin
   end if;
 
   insert into public.document_counters as counters (prefix, last_number)
-  values (p_prefix, 1)
+  values (p_prefix, 2000)
   on conflict (prefix)
   do update set last_number = counters.last_number + 1
   returning last_number into next_value;
